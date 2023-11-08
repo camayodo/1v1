@@ -1,0 +1,73 @@
+---
+title: "RWorksheet-4b_Camayodo"
+author: "Ann Margaret Camayodo"
+date: "2023-11-08"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1
+```{r}
+VecA <- c(1,2,3,4,5)
+B <- matrix(rep(0,25), ncol=5)
+
+for(i in 1:5) {
+  for(j in 1:5) {
+    B[i,j] <- abs(i - j) + 1
+  }
+}
+
+print(matrixA)
+
+```
+#2
+```{r}
+rows <- 5
+for(i in 1:rows) {
+  cat(rep("\"*\"", i), "\n")
+}
+```
+#3
+```{r}
+input <- as.integer(readline("Enter a number to start Fibonacci sequence: "))
+
+one <- 0
+two <- 1
+
+cat("Fibonacci sequence:\n")
+cat(two, "\n")
+
+repeat {
+  c <- one + two
+  one <- two
+  two <- c
+  if (two > 500) {
+    break
+  }
+  if (one >= input) {
+    cat(one, "\n")
+  }
+}
+```
+#4
+```{r}
+HouseholdData <-data.frame(
+Shoesize = c(6.5,9.0,8.5,8.5,10.5,7.0,9.5,9.0,13.0,7.5,10.5,8.5,12.0,10.5,13.0,11.5,8.5,5.0,10.0,6.5,7.5,8.5,10.5,8.5,10.5,11.0,9.0,13.0),
+Height = c(66.0,68.0,64.5,65.0,70.0,64.0,70.0,71.0,72.0,64.0,74.5,67.0,71.0,71.0,77.0,72.0,59.0,62.0,72.0,66.0,64.0,67.0,73.0,69.0,72.0,70.0,69.0,70.0),
+Gender = c("F","F","F","F","M","F","F","F","M","F","M","F","M","M","M","M","F","F","M","F","F","M","M","F","M","M","M","M")
+)
+HouseholdData
+
+Male <- subset(HouseholdData, Gender=="M")
+Female <- subset(HouseholdData, Gender=="F")
+
+nrow(Male)
+nrow(Female)
+```
+
+```{r}
+
+```
