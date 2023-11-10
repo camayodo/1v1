@@ -11,88 +11,84 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 1
+--------------------------------------------------------------------------
+#1.The table below shows the data about shoe size and height. Create a data frame. 
+--------------------------------------------------------------------------
+```{r}
 
-  shoe_Size <- c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5, 13.0, 11.5, 8.5,5.0,10.0,6.5,7.5,8.5,10.5,8.5,10.5,11.0,9.0,13.0)
+#a. Describe the data.
 
-  height <- c(66.0, 68.0, 64.5, 65.0, 70.0,64.0,70.0,71.0,72.0,64.0,74.5,67.0,71.0,71.0,77.0,72.0,59.0,62.0,72.0,66.0,64.0,67.0,73.0,69.0,72.0,70.0,69.0,70.0)
-
-  gender <- c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M" , "F", "M", "M", "M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M")
-
-df <- data.frame(
-  ShoeSize = shoe_Size,
-  Height = height,
-  Gender = gender
+df <- data.frame( 
+  Shoe_Size = c(6.5,9.0,8.5,8.5,10.5,7.0,9.5,9.0,13.0,7.5,10.5,8.5,12.0,10.5, 13.0, 11.5, 8.5, 5.0, 10.0, 6.5 , 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0),
+ Height = c(66.0,68.0,64.5,65.0,70.0,64.0,70.0,71.0,72.0,64.0,74.5,67.0,71.0,71.0, 77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0),
+ Gender = c('F','F','F','F','M','F','F','F','M','F','M','F','M','M', 'M', 'M', 'F','F', 'M', 'F', 'F', 'M', 'M', 'F', 'M', 'M', 'M', 'M')
 )
-
 df
 
+# b. Create a subset by males and females with their corresponding shoe size and height.
+# What its result? Show the R scripts.
+df_males <- subset(df, Gender == 'M')
+df_females <- subset(df, Gender == 'F')
+df_males
+df_females
 
-# 1.a
+# c.Find the mean of shoe size and height of the respondents. Write the R scripts and its result.
+mean_shoe_size <- mean(df$Shoe_Size)
+mean_height <- mean(df$Height)
+paste("The mean shoe size of the respondents is:", mean_shoe_size)
+paste("The mean height of the respondents is:", mean_height)
 
+# d. Is there a relationship between shoe size and height? Why?
+```
+--------------------------------------------------------------------------
+#2. Construct character vector months to a factor with factor() and assign the result to factor_months_vector. Print out factor_months_vector and assert that R prints out the factor levels below the actual values.
+--------------------------------------------------------------------------
+```{r}
+# Constructing the character vector months
+months_vector <- c("March","April","January","November","January",
+                   "September","October","September","November","August",
+                   "January","November","November","February","May","August",
+                   "July","December","August","August","September","November","February",
+                   "April")
 
+# Converting the character vector months to a factor
+factor_months_vector <- factor(months_vector)
 
-# 1.b
+# Printing out the result
+factor_months_vector
+```
+--------------------------------------------------------------------------
+#3. Then check the summary() of the months_vector and factor_months_vector. | Inter-pret the results of both vectors. Are they both equally useful in this case? 
+--------------------------------------------------------------------------
+```{r}
+summary(months_vector)
+summary(factor_months_vector)
 
-males <- df[df$Gender == "M",]
-females <- df[df$Gender == "F",]
-males
-females
+```
+--------------------------------------------------------------------------
+#4.Create a vector and factor for the table below.
+--------------------------------------------------------------------------
+```{r}
+direction <- c("East", "West", "North")
+frequency <- c(1,4,3)
 
-# 1.c
+factor_data <- factor(c(direction,frequency))
+factor_data
 
-meanOfShoeSize <- as.numeric(df$Shoe_Size)
-meanOfHeight <- mean(df$Height)
-meanOfHeight
-meanOfShoeSize
+new_order_data <- factor(factor_data,levels = c("East","West","North"))
+print(new_order_data)
+```
+--------------------------------------------------------------------------
+#5. Enter the data below in Excel with file name = import_march.csv
+--------------------------------------------------------------------------
+```{r}
+reading <- read.csv(file.path(getwd(), "import_march.csv"), header = TRUE, sep = ",")
+```
 
-# 1.d
-# The relationship between the two variables is that shoe size and height are positively correlated. In other words, if a person has a smaller height, they are likely to have a smaller shoe size.
-
-#-------------------
-
-# 2
-monthsVector <- c("March","April","January","November","January","September","October","September","November","August","January","November","November","February","May","August","July","December","August","August","September","November","February","April")
-monthsVector
-factormonthsVector <- factor(monthsVector)
-factormonthsVector
-
-# ----------
-
-# 3
-
-summary(monthsVector)
-summary(factormonthsVector)
-
-
-
-
-# ------------
-
-# 4
-
-factorData <- c("East", "West", "North")
-factorFrequency <- c(1,4,3)
-
-neworderData <- factor(factorData,levels = c("East","West","North"))
-
-neworderData
-
-
-
-# ------------
-
-# 5
-
-imported_table <- read.csv(file = file_path , header = TRUE, sep = ",")
-imported_table
-
-
-
-# ------------
-
-# 6
-
+--------------------------------------------------------------------------
+#6. Full Search
+--------------------------------------------------------------------------
+```{r}
 randomNum <- readline(prompt = "Enter number from 1 to 50: ")
 
 #error cannot knit if there is as.numeric
@@ -108,8 +104,12 @@ if (randomNum > 50) {
   paste(randomNum)
 }
 
-# 7
+```
 
+--------------------------------------------------------------------------
+#7. Change
+--------------------------------------------------------------------------
+```{r}
 minimumBills <- function(price) {
  
   min_bills <- price %/% 50
@@ -117,11 +117,13 @@ minimumBills <- function(price) {
 }
 
 minimumBills(900)
+```
 
-# ----------
-
-# 8.a
-
+--------------------------------------------------------------------------
+#8. The following is each student’s math score for one semester. Based on this, answer the following questions.
+--------------------------------------------------------------------------
+8.(a) 
+```{r}
 names <- c("Annie", "Thea", "Steve", "Hanna")
 grade1 <- c(85,65,75,95)
 grade2 <- c(65,75,55,75)
@@ -135,10 +137,11 @@ grade <- data.frame(
   Grade3 = grade3,
   Grade4 = grade4
 )
+grade
+```
 
-
-# 8.b
-
+8.(b)
+```{r}
 grade$Average <- (grade$Grade1 + grade$Grade2 + grade$Grade3 + grade$Grade4) / 4
 
 highScorers <- grade[grade$Average > 90,]
@@ -149,9 +152,11 @@ if (nrow(highScorers) > 0) {
 } else {
   paste("No students have an average math score over 90.")
 }
+```
 
-# 8.c
 
+8.(c)
+```{r}
 firstTest <- sum(grade$Grade1) / nrow(grade)
 firstTest
 
@@ -164,7 +169,6 @@ thirdTest
 fourthTest <- sum(grade$Grade4) / nrow(grade)
 fourthTest
 
-
 if (firstTest < 80) {
   paste("The 1st test was difficult.")
 } else if(secondTest < 80) {
@@ -176,61 +180,52 @@ if (firstTest < 80) {
 } else {
   paste("No test had an average score less than 80.")
 }
+```
 
-# 8.d
-# Annie scores
-if (grade[1,2] > grade[1,3] && grade[1,2] > grade[1,4] && grade[1,2] > grade[1,5]) {
-  annieHighest <- grade[1,2]
-} else if (grade[1,3] > grade[1,4] && grade[1,3] > grade[1,5]) {
-  annieHighest <- grade[1,3]
-} else if (grade[1,4] > grade[1,5] && grade[1,2] > grade[1,5]) {
-  annieHighest <- grade[1,4]
-} else {
-  annieHighest <- grade[1,5]
+8.(d)
+```{r}
+#ANNIE GRADE
+if (grade$Grade1[1] > 90) {
+  print(paste(grade$Name[1], "’s highest grade this semester is", grade$Grade1[1], ".", sep = ""))
+} else if (grade$Grade2[1] > 90) {
+  print(paste(grade$Name[1], "’s highest grade this semester is", grade$Grade2[1], ".", sep = ""))
+} else if (grade$Grade3[1] > 90) {
+  print(paste(grade$Name[1], "’s highest grade this semester is", grade$Grade3[1], ".", sep = ""))
+} else if (grade$Grade4[1] > 90) {
+  print(paste(grade$Name[1], "’s highest grade this semester is", grade$Grade4[1], ".", sep = ""))
 }
 
-# Thea scores
-if (grade[2,2] > grade[2,3] && grade[2,2] > grade[2,4] && grade[2,2] > grade[2,5]) {
-  theaHighest <- grade[2,2]
-} else if (grade[2,3] > grade[2,4] && grade[2,3] > grade[2,5]) {
-  theaHighest <- grade[2,3]
-} else if (grade[2,4] > grade[2,5] && grade[2,2] > grade[2,5]) {
-  theaHighest <- grade[2,4]
-} else {
-  theaHighest <- grade[2,5]
-}
-# Steve scores
-if (grade[3,2] > grade[3,3] && grade[3,2] >grade[3,4] && grade[3,2] > grade[3,5]) {
-  steveHighest <- grade[3,2]
-} else if (grade[3,3] > grade[3,4] && grade[3,3] >grade[3,5]) {
-  steveHighest <- grade[3,3]
-} else if (grade[3,4] > grade[3,5] && grade[3,2] > grade[3,5]) {
-  steveHighest <- grade[3,4]
-} else {
-  steveHighest <- grade[3,5]
-}
-# Hanna scores
-if (grade[4,2] > grade[4,3] && grade[4,2] > grade[4,4] && grade[4,2] > grade[4,5]) {
-  hannaHighest <- grade[4,2]
-} else if (grade[4,3] > grade[4,4] && grade[4,3] > grade[4,5]) {
-  hannaHighest <- grade[4,3]
-} else if (grade[4,4] > grade[4,5] && grade[4,2] > grade[4,5]) {
-  hannaHighest <- grade[4,4]
-} else {
-  hannaHighest <- grade[4,5]
+#THEA GRADE
+if (grade$Grade1[2] > 90) {
+  print(paste(grade$Name[2], "’s highest grade this semester is", grade$Grade1[2], ".", sep = ""))
+} else if (grade$Grade2[2] > 90) {
+  print(paste(grade$Name[2], "’s highest grade this semester is", grade$Grade2[2], ".", sep = ""))
+} else if (grade$Grade3[2] > 90) {
+  print(paste(grade$Name[2], "’s highest grade this semester is", grade$Grade3[2], ".", sep = ""))
+} else if (grade$Grade4[2] > 90) {
+  print(paste(grade$Name[2], "’s highest grade this semester is", grade$Grade4[2], ".", sep = ""))
 }
 
-grade$HighestGrades <- c(annieHighest, theaHighest, steveHighest, hannaHighest)
-
-
-above90 <- grade[grade$HighestGrades > 90,]
-above90
-
-if (nrow(above90) > 0) {
-  paste(above90$Name, "'s highest grade this semester is", above90$HighestGrade)
-} else {
-  paste("No students have an average math score over 90.")
+#STEVE GRADE
+if (grade$Grade1[3] > 90) {
+  print(paste(grade$Name[3], "’s highest grade this semester is", grade$Grade1[3], ".", sep = ""))
+} else if (grade$Grade2[3] > 90) {
+  print(paste(grade$Name[3], "’s highest grade this semester is", grade$Grade2[3], ".", sep = ""))
+} else if (grade$Grade3[3] > 90) {
+  print(paste(grade$Name[3], "’s highest grade this semester is", grade$Grade3[3], ".", sep = ""))
+} else if (grade$Grade4[3] > 90) {
+  print(paste(grade$Name[3], "’s highest grade this semester is", grade$Grade4[3], ".", sep = ""))
 }
 
+#HANNA GRADE
+if (grade$Grade1[4] > 100) {
+  print(paste(grade$Name[4], "’s highest grade this semester is", grade$Grade1[4], ".", sep = ""))
+} else if (grade$Grade2[4] >= 100) {
+  print(paste(grade$Name[4], "’s highest grade this semester is", grade$Grade2[4], ".", sep = ""))
+} else if (grade$Grade3[4] >= 100) {
+  print(paste(grade$Name[4], "’s highest grade this semester is", grade$Grade3[4], ".", sep = ""))
+} else if (grade$Grade4[4] >= 100) {
+  print(paste(grade$Name[4], "’s highest grade this semester is ", grade$Grade4[4], ".", sep = ""))
+}
 
 ```
