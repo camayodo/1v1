@@ -1,10 +1,5 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
----
----(r)
-title:"RWORKSHEET4B_CAMAYODO"
+title: "RWORKSHEET4B_CAMAYODO"
 author: "ANN MARGARET CAMAYODO"
 date: "2023-11-08"
 output: pdf_document
