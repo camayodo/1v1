@@ -78,7 +78,9 @@ names(unique_count) <- c("Manufacturer", "Number of Models")
 unique_count
 
 ggplot(unique_count, aes(x = Manufacturer, y = `Number of Models`)) +
-geom_bar(stat = "identity", fill = "violet")
+geom_bar(stat = "identity", fill = "violet")+ theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 90, hjust = 1))
+
 ```
 
 
@@ -86,7 +88,9 @@ geom_bar(stat = "identity", fill = "violet")
 2a.What does ggplot(mpg, aes(model, manufacturer)) + geom_point() show?
 ```{r}
 library(ggplot2)
-ggplot(open_mpg, aes(model, manufacturer)) + geom_point()
+ggplot(open_mpg, aes(model, manufacturer)) + geom_point()+ theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 90, hjust = 1))
+
 ```
 ans. Plots the mpgdataset with model on the x-axis and manufacturer on the y-axis. Each point represents a car model
 
@@ -138,7 +142,9 @@ mpg_observation_top20  <- ggplot(mpg_observation_top20, aes(x = model, y = count
   geom_bar(stat = "identity") + 
   labs(title = "Number of Cars per Model", 
        x = "Model" , 
-       y = "Number of cars")
+       y = "Number of cars")+ theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 90, hjust = 1))
+
 
 mpg_observation_top20 
 ```
@@ -156,7 +162,6 @@ mpg_top20 <- ggplot(grouped_open_mpg, aes(x = model, y = count, fill = model)) +
 
 mpg_top20
 ```
-
 
 5.Plot the relationship between cyl - number of cylinders and displ - engine displacement using geom_point with aesthetic color = engine displacement. Title should be “Relationship between No. of Cylinders and Engine Displacement”.
 ```{r}
@@ -260,21 +265,15 @@ junction_plot_4 <- ggplot(junctions_subset4,
 
 junction_plot_4
 ```
-7. Moving alexa_file from my rWorksheet 4b to 4c.
+7. From alexa_file.xlsx, import it to your environment
 
-install.packages()
-install.packages()
-
-library()
-library()
-file.move("/cloud/project/RWorksheet4/RWorksheet#4b/alexa_file.xlsx", "/cloud/project/RWorksheet4/rWorksheet#4c")
 
 7a.How many observations does alexa_file has? What about the number of columns? Show your solution and answer.
 ```{r}
 
 library(readxl)
 
-open_alexa_data <- read_excel("/cloud/project/rworksheet4C_camayodo/alexa_file_.xlsx")
+open_alexa_data <- read_excel("/cloud/project/Rworksheet4/rworksheet4C_camayodo/alexa_file_.xlsx")
 
 num_obs <- nrow(open_alexa_data)
 num_obs
@@ -297,10 +296,11 @@ var_counts
 
 ```{r}
 plot_alexafile <- ggplot(open_alexa_data, aes(x = variation)) +
-  geom_bar(fill = "violet") +
+  geom_bar(fill = "blue") +
   labs(title = "Variations",
        x = "Variation",
-       y = "Count")
+       y = "Count")+ theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 90, hjust = 1))
 
 plot_alexafile
 ```
@@ -352,7 +352,9 @@ ggplot(alexa_variation_ratings, aes(x = variation, y = avg_rating)) +
   geom_bar(stat = "identity", fill = "blue") +
   labs(title = "Average Ratings by Variation",
        x = "Variation",
-       y = "Average Rating")
+       y = "Average Rating")+ theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 90, hjust = 1))
+
 
 
 ```
