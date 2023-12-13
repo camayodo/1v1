@@ -1,0 +1,87 @@
+---
+title: "RWorksheet#6"
+author: "Ann Margaret Camayodo BSIT 2-C"
+date: "2023-12-111"
+output: pdf_document
+---
+```{r}
+install.packages("Hmisc")
+install.packages("pastecs")
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(Hmisc)
+library(pastecs)
+test <- data.frame(
+  Student = c(1,2,3,4,5,6,7,8,9,10),
+  PreTest = c(55,54,47,57,51,61,57,54,63,58),
+  PostTest = c(61,60,56,63,56,63,59,56,62,61)
+)
+summary_hmisc <- describe(test)
+
+summary_pastecs <- stat.desc(test)
+
+cat("Descriptive Statistics using Hmisc:\n")
+print(summary_hmisc)
+
+print(summary_pastecs)
+
+```
+#2. The Department of Agriculture was studying the effects of several levels of a fertilizer on the growth of a plant. For some analyses, it might be useful to convert the fertilizer levels to an ordered factor.
+```{r}
+data <- c(10, 10, 10, 20, 20, 50, 10, 20, 10, 50, 20, 50, 20, 10)
+factor_data <- factor(data, levels = c(10, 20, 50), ordered = TRUE)
+
+```
+#3. Abdul Hassan, president of Floor Coverings Unlimited, has asked you to study the exercise levels undertaken by 10 subjects were “l”, “n”, “n”, “i”, “l” , “l”, “n”,“n”, “i”, “l” ; n=none, l=light, i=intense
+a. What is the best way to represent this in R?
+```{r}
+exercise_levels <- c("l", "n", "n", "i", "l", "l", "n", "n", "i", "l")
+
+```
+#4. Sample of 30 tax accountants from all the states and territories of Australia and their individual state of origin is specified by a character vector of state mnemonics as:
+state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+"vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+"wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+"vic", "vic", "act")
+a. Apply the factor function and factor level. Describe the results.
+```{r}
+state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+           "vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+           "wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+           "vic", "vic", "act")
+
+state_factor <- factor(state)
+```
+#4From #4 - continuation:
+• Suppose we have the incomes of the same tax accountants in another vector (in suitably
+large units of money)
+incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
+62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+a. Calculate the sample mean income for each state we can now use the special function
+tapply():
+Example: giving a means vector with the components labelled by the levels
+incmeans <- tapply(incomes, statef, mean)
+Note: The function tapply() is used to apply a function, here mean(), to each group
+of components of the first argument, here incomes, defined by the levels of the second
+component, here state 2
+• 2
+that tapply() also works in this case when its second argument is not a factor,
+• e.g., ‘tapply(incomes, state)’, and this is true for quite a few other functions, since
+arguments are coerced to factors when necessary (using as.factor()).
+
+b. Copy the results and interpret.
+```{r}
+incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
+62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+
+incmeans <- tapply(incomes, state_factor, mean)
+
+```
