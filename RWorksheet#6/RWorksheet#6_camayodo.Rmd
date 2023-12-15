@@ -12,9 +12,11 @@ install.packages("pastecs")
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-
+#1
 ```{r}
+install.packages("Hmisc")
+install.packages("pastecs")
+
 library(Hmisc)
 library(pastecs)
 test <- data.frame(
@@ -31,57 +33,51 @@ print(summary_hmisc)
 
 print(summary_pastecs)
 
-```
-#2. The Department of Agriculture was studying the effects of several levels of a fertilizer on the growth of a plant. For some analyses, it might be useful to convert the fertilizer levels to an ordered factor.
-```{r}
-data <- c(10, 10, 10, 20, 20, 50, 10, 20, 10, 50, 20, 50, 20, 10)
-factor_data <- factor(data, levels = c(10, 20, 50), ordered = TRUE)
 
 ```
-#3. Abdul Hassan, president of Floor Coverings Unlimited, has asked you to study the exercise levels undertaken by 10 subjects were “l”, “n”, “n”, “i”, “l” , “l”, “n”,“n”, “i”, “l” ; n=none, l=light, i=intense
-a. What is the best way to represent this in R?
+#2.
 ```{r}
-exercise_levels <- c("l", "n", "n", "i", "l", "l", "n", "n", "i", "l")
+Fertelizer_Data <- c(10, 10, 10, 20, 20, 50, 10, 20, 10, 50, 20, 50, 20, 10)
+OrderedFertilizer <- factor(Fertelizer_Data, levels = c(10, 20, 50))
+
+cat("Original data:\n")
+print(Fertelizer_Data)
+ordered_data <- OrderedFertilizer[order(OrderedFertilizer)]
+cat("\nOrdered data:\n")
+print(ordered_data)
+
+#The result is the ordered version of the original data, with the values arranged in ascending order.
 
 ```
-#4. Sample of 30 tax accountants from all the states and territories of Australia and their individual state of origin is specified by a character vector of state mnemonics as:
-state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
-"vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
-"wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
-"vic", "vic", "act")
-a. Apply the factor function and factor level. Describe the results.
+#3
 ```{r}
+#Using a factor variable is the most effective method for expressing the workout levels in R.
+#The three choices for activity levels in this instance are "n" (none), "l" (light), and "i" (intense). 
+#To appropriately describe the activity levels for each participant, you can use these levels to generate a factor variable.
+
 state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
            "vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
            "wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
            "vic", "vic", "act")
 
-state_factor <- factor(state)
+state
 ```
-#4From #4 - continuation:
-• Suppose we have the incomes of the same tax accountants in another vector (in suitably
-large units of money)
-incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
-62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
-65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
-a. Calculate the sample mean income for each state we can now use the special function
-tapply():
-Example: giving a means vector with the components labelled by the levels
-incmeans <- tapply(incomes, statef, mean)
-Note: The function tapply() is used to apply a function, here mean(), to each group
-of components of the first argument, here incomes, defined by the levels of the second
-component, here state 2
-• 2
-that tapply() also works in this case when its second argument is not a factor,
-• e.g., ‘tapply(incomes, state)’, and this is true for quite a few other functions, since
-arguments are coerced to factors when necessary (using as.factor()).
-
-b. Copy the results and interpret.
+#4
 ```{r}
-incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
-62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
-65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+States <- factor(state)
+cat("Original state data:\n")
+print(state)
 
-incmeans <- tapply(incomes, state_factor, mean)
+cat("\nFactor levels:\n")
+print(levels(States))
 
+cat("\nFactor representation:\n")
+print(States)
+
+#The result will show the original state data, the factor levels, and the factor representation. 
+#The factor levels will be automatically assigned based on the unique values in the state vector.
 ```
+#5
+```{r}
+```
+
