@@ -1,18 +1,17 @@
 ---
 title: "RWorksheet#6"
 author: "Ann Margaret Camayodo BSIT 2-C"
-date: "2023-12-111"
+date: "2023-12-11"
 output: pdf_document
 ---
-```{r}
-install.packages("Hmisc")
-install.packages("pastecs")
-```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#1
+#1. Create a data frame for the table below. Show your solution.
+
+a. Compute the descriptive statistics using different packages (Hmisc and pastecs).
+Write the codes and its result.
 ```{r}
 install.packages("Hmisc")
 install.packages("pastecs")
@@ -35,7 +34,9 @@ print(summary_pastecs)
 
 
 ```
-#2.
+#2. The Department of Agriculture was studying the effects of several levels of a fertilizer on the growth of a plant. For some analyses, it might be useful to convert the fertilizer levels to an ordered factor.
+The data were 10,10,10, 20,20,50,10,20,10,50,20,50,20,10.
+a. Write the codes and describe the result.
 ```{r}
 Fertelizer_Data <- c(10, 10, 10, 20, 20, 50, 10, 20, 10, 50, 20, 50, 20, 10)
 OrderedFertilizer <- factor(Fertelizer_Data, levels = c(10, 20, 50))
@@ -49,7 +50,8 @@ print(ordered_data)
 #The result is the ordered version of the original data, with the values arranged in ascending order.
 
 ```
-#3
+#3 Abdul Hassan, president of Floor Coverings Unlimited, has asked you to study the exercise levels undertaken by 10 subjects were “l”, “n”, “n”, “i”, “l” , “l”, “n”,“n”, “i”, “l” ; n=none, l=light, i=intense
+a. What is the best way to represent this in R?
 ```{r}
 #Using a factor variable is the most effective method for expressing the workout levels in R.
 #The three choices for activity levels in this instance are "n" (none), "l" (light), and "i" (intense). 
@@ -62,7 +64,12 @@ state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
 
 state
 ```
-#4
+#4 Sample of 30 tax accountants from all the states and territories of Australia and their individual state of origin is specified by a character vector of state mnemonics as:
+state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+"vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+"wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+"vic", "vic", "act")
+a. Apply the factor function and factor level. Describe the results.
 ```{r}
 States <- factor(state)
 cat("Original state data:\n")
@@ -77,7 +84,56 @@ print(States)
 #The result will show the original state data, the factor levels, and the factor representation. 
 #The factor levels will be automatically assigned based on the unique values in the state vector.
 ```
-#5
 ```{r}
+#5 Sample of 30 tax accountants from all the states and territories of Australia and their individual state of origin is specified by a character vector of state mnemonics as:
+state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+"vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+"wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+"vic", "vic", "act")
+#a. Apply the factor function and factor level. Describe the results.
+#In this code, we analyzed income data by state using the R programming language. We calculated the mean income for each state using the tapply() function. The results are stored in the meanIncome variable. By analyzing income data, we can gain insights into the economic disparities among different states.
 ```
 
+#6Calculate the standard errors of the state income means (refer again to number 3)
+```{r}
+
+#stdError <- function(x) sqrt(var(x)/length(x))
+#incster <- tapply(incomes, statef, stdError)
+
+#a. The standard error is that the object 'statef' is not found as the vector was named as 'state'.
+```
+#7 Use the titanic dataset.
+#a. subset the titatic dataset of those who survived and not survived. Show the codes
+#and its result.
+```{r}
+install.packages("titanic")
+library(titanic)
+data("titanic_train")
+titanic_data <- titanic_train
+
+
+Survived <- subset(titanic_data, Survived == 1)
+NotSurvived <- subset(titanic_data, Survived == 0)
+
+print(Survived)
+print(NotSurvived)
+```
+#8The data sets are about the breast cancer Wisconsin. The samples arrive periodically as Dr. Wolberg reports his clinical cases. The database therefore reflects this chronologihttps://drive.google.com/file/d/16MFLoehCgx2MJuNSAuB2CsBy6eDIIru/view?usp=drive_link)
+```{r}
+install.packages("readr")
+library(readr)
+breastcancer_wisconsin <- read_csv("breastcancer_wisconsin.csv")
+print(breastcancer_wisconsin)
+
+#a. The dataset is all about the recorded data of people that have breastcancer and its characteristics.
+
+```
+#9 Export the data abalone to the Microsoft excel file. Copy the codes.
+```{r}
+library(xlsx)
+abalone<- read.csv("abalone.csv")
+xlsx::write.xlsx(abalone, "abalone.xls", col.names=TRUE, row.names=TRUE, sheetName="sample")
+library("AppliedPredictiveModeling")
+head(abalone)
+summary(abalone)
+```
